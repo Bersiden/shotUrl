@@ -42,7 +42,11 @@
                   ?>
                     <tr>
                         <td><?= $val["id"];?></td>
-                        <td><?= $val["shotUrl"];?></td>
+                        <td>
+                            <a href="<?= $val["shotUrl"];?>" target="_blank">
+                                <?= $val["shotUrl"];?>
+                            </a>
+                        </td>
                         <td><?= $val["urlName"];?></td>
                         <td><?= $val["view"];?></td>
 
