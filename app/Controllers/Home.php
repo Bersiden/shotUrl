@@ -1,14 +1,23 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Models\UrlModel;
 class Home extends BaseController
 {
-    public function index()
+    public function index($d)
     {
-        // $parser = \Config\Services::parser();
-        // echo $parser->setData(["content"=>"test"])->render('inc/master');
-        // $this->template('list',["data"=>1]);
+
+        $urlModel = new UrlModel();
+
+        $data = $urlModel->checkUrl($d);
+        if(count($data)==0){
+            return view('errors/html/error_404');
+        }else{
+            $urlModel->setView($d);       
+            return redirect()->to($data[0]['urlName']);       
+        }
+
+
     }
 
     public function index2()

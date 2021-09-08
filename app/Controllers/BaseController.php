@@ -35,7 +35,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ["html","url"];
 
     /**
      * Constructor.
@@ -51,6 +51,7 @@ class BaseController extends Controller
     }
     public function template(string $page, array $data)
     {
+ 
         echo view('inc/header', $data);
         echo view($page, $data);
         echo view('inc/footer', $data);
