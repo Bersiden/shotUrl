@@ -9,7 +9,7 @@ class Home extends BaseController
 
         $urlModel = new UrlModel();
 
-        $data = $urlModel->checkUrl($d);
+        $data = $urlModel->checkUrlLoad($d);
         if(count($data)==0){
             return view('errors/html/error_404');
         }else{

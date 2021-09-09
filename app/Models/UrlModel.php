@@ -51,13 +51,20 @@ class UrlModel extends Model
 
     public function get_all_data()
     {
-        $query = $this->db->query('select id,urlName,concat("'.base_url().'","/",shotUrl) as shotUrl,view from ' . $this->table.' where status = 1');
+        $query = $this->db->query('select id,urlName,concat("'.base_url().'","/",shotUrl) as shotUrl,view,startDate from ' . $this->table.' where status = 1');
         return $query->getResultArray();
     }
     public function checkUrl($url)
     {
         $builder = $this->db->table($this->table);
         $query = $builder->getWhere(['shotUrl' => $url,'status'=>'1'], 1, 0);
+        return $query->getResultArray();
+    }
+    public function checkUrlLoad($url)
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->getWhere(['shotUrl' => $url,'status'=>'1','startDate <='=>date("Y-m-d H:i:s")], 1, 0);
+
         return $query->getResultArray();
     }
 }

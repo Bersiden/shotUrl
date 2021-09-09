@@ -36,11 +36,17 @@ class UrlSetting extends BaseController
         }
         $request = \Config\Services::request();
         $url=  $request->getPost("url");
+        $start=  $request->getPost("start");
         $dataAdd = [
             "shotUrl"=>$gen,
             "urlName"=>$url,
-            "status"=>1
+            "status"=>1,
         ];
+        if($start){
+            list($day,$month,$year)=explode("/",$start);
+            $dataAdd["startDate"] =date("Y-m-d H:i:s",strtotime($year."/".$month."/".$day ." 00:00:00"));
+        }
+  
         $urlModel->insert_data($dataAdd);
             $reutn =[
             'status' => true,
